@@ -246,7 +246,10 @@ export default {
       console.log('generateOne start')
       var replacements = {}
       for (const r of this.replacements) {
-        replacements[r.name] = r.value
+        var name = r.name.trim()
+        if (name) {
+          replacements[name] = r.value
+        }
       }
 
       var file = this.files[this.index]
@@ -275,7 +278,7 @@ export default {
       reader.onerror = function(e) {
         // error occurred
         console.log('Error : ' + e.type);
-        vm.error = 'Failed to generate some files'
+        vm.error = 'Failed to generate the file: ' + file.name
         vm.index = -1
       };
       reader.readAsBinaryString(file);
