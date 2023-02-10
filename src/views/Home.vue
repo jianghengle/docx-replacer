@@ -64,7 +64,7 @@
           <div class="control">
             <div class="file has-name">
               <label class="file-label">
-                <input class="file-input" type="file" accept=".docx" multiple @change="onFileChange">
+                <input class="file-input" type="file" accept=".docx, .pptx" multiple @change="onFileChange">
                 <span class="file-cta">
                   <span class="file-icon">
                     <i class="fas fa-upload"></i>
@@ -258,7 +258,6 @@ export default {
       var reader = new FileReader();
       reader.onload = function(e) {
         // binary data
-        console.log('binary', e.target.result);
         var content = e.target.result
         const zip = new PizZip(content);
         const doc = new Docxtemplater(zip, {
